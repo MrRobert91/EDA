@@ -1,5 +1,6 @@
 package material.tree;
 
+import material.exceptionClasses.InvalidPositionException;
 import material.tree.iterator.BFSIteratorFactory;
 import java.util.*;
 import material.tree.iterator.TreeIteratorFactory;
@@ -41,6 +42,7 @@ public class LinkedTree<E> implements Tree<E> {
 
         @Override
         public T getElement() {
+
             return element;
         }
 
@@ -50,6 +52,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @param o the element to store in the node
          */
         public final void setElement(T o) {
+
             element = o;
         }
 
@@ -59,6 +62,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @return the list of children
          */
         public List<TreeNode<T>> getChildren() {
+
             return children;
         }
 
@@ -68,6 +72,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @param c the list of nodes to be used as children of this position
          */
         public final void setChildren(List<TreeNode<T>> c) {
+
             children = c;
         }
 
@@ -77,6 +82,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @return the parent of this node
          */
         public TreeNode<T> getParent() {
+
             return parent;
         }
 
@@ -86,6 +92,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @param v the node to be used as parent
          */
         public final void setParent(TreeNode<T> v) {
+
             parent = v;
         }
 
@@ -95,6 +102,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @return a reference to the tree where the node belongs
          */
         public LinkedTree<T> getMyTree() {
+
             return myTree;
         }
 
@@ -104,6 +112,7 @@ public class LinkedTree<E> implements Tree<E> {
          * @param myTree the tree where this node belongs
          */
         public void setMyTree(LinkedTree<T> myTree) {
+
             this.myTree = myTree;
         }
     }
@@ -123,11 +132,13 @@ public class LinkedTree<E> implements Tree<E> {
 
     @Override
     public int size() {
+
         return size;
     }
 
     @Override
     public boolean isEmpty() {
+
         return (size == 0);
     }
 
@@ -280,6 +291,15 @@ public class LinkedTree<E> implements Tree<E> {
     @Override
     public Iterator<Position<E>> iterator() {
         return this.iteratorFactory.createIterator(this);
+    }
+
+    //Metodo moveSubtree
+    public Position<E> moveSubtree(Position<E> pOrig, Position<E> pDest)
+            throws InvalidPositionException {
+
+
+
+        return null;
     }
 }
 
