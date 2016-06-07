@@ -13,6 +13,7 @@ public class BFSIteratorFactory<E> implements TreeIteratorFactory<E> {
 
     @Override
     public Iterator<Position<E>> createIterator(Tree<E> tree) {
+
         return new BFSIterator<>(tree);
     }
 

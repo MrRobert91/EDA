@@ -290,16 +290,32 @@ public class LinkedTree<E> implements Tree<E> {
     
     @Override
     public Iterator<Position<E>> iterator() {
+
         return this.iteratorFactory.createIterator(this);
     }
 
     //Metodo moveSubtree
     public Position<E> moveSubtree(Position<E> pOrig, Position<E> pDest)
             throws InvalidPositionException {
+        TreeNode<E> origen = checkPosition(pOrig);
+        TreeNode<E> destino = checkPosition(pDest);
+        TreeNode<E> parent = origen.parent;
 
+        Iterator<Position<E>> it = this.iteratorFactory.createIterator(this, origen);//Si el destino es interno al origen
+        while(it.hasNext()){
+            if(destino == it.next()){
+                throw new InvalidPositionException("Invalid position");
+            }
+        }
 
+        origen.setParent(destino);	//Establezco a destino como padre del nodo origen.
+        List<LinkedTree<E>.TreeNode<E>> hijosDestino = destino.getChildren();
+        hijosDestino.add(origen);//añadimos el nodo origen a la lista de hijos del nodo destino
 
-        return null;
+        List<LinkedTree<E>.TreeNode<E>> hijosOrigen = parent.getChildren();
+        hijosOrigen.remove(origen);
+
+        return origen ;
     }
 }
 

@@ -6,9 +6,13 @@
 package material.tree;
 
 import material.tree.iterator.BFSIterator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+
+import java.util.*;
+
+import material.tree.iterator.FrontIterator;
+import material.tree.iterator.PostorderIterator;
+import material.tree.iterator.PreorderIterator;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -36,6 +40,10 @@ public class LinkedTreeTest {
     public void testIsEmpty() {
         LinkedTree<String> t = new LinkedTree<>();
         assertTrue(t.isEmpty());
+        assertEquals(t.size(), 0);
+        assertEquals(t.root(), null);
+
+
     }
 
     /**
@@ -176,5 +184,94 @@ public class LinkedTreeTest {
             assertNotSame(node.getElement(),d);
         }
     }
-    
+
+    @Test
+    public void testMoveSubtree() {
+        LinkedTree<String> t = new LinkedTree<>();
+        Position<String> a = t.addRoot("A");
+        Position<String> b = t.add("B", a);
+        Position<String> c = t.add("C", a);
+        Position<String> d = t.add("D", b);
+        Position<String> e = t.add("E", c);
+        Position<String> f = t.add("F", c);
+        Position<String> g = t.add("G", e);
+        t.moveSubtree(c,d);
+        assertEquals (t.parent(c).getElement(), "D" );
+
+        List<Position<String>> listaHijosC = (List<Position<String>>) t.children(c);
+        assertEquals(listaHijosC.contains(e), true);
+        assertEquals(listaHijosC.contains(f), true);
+
+        List<Position<String>> listaHijosE = (List<Position<String>>) t.children(e);
+        assertEquals(listaHijosE.contains(g), true);
+
+        List<Position<String>> listaHijosA = (List<Position<String>>) t.children(a);
+        assertEquals(listaHijosA.size(),1);
+        assertEquals(listaHijosA.contains(b),true);
+        }
+
+    //Test de los iterators
+    @Test
+    public void testFrontIterator(){
+        LinkedTree<String> t = new LinkedTree<>();
+        Position<String> p = t.addRoot("1");
+        Position<String> q = t.add("2", p);
+        Position<String> h = t.add("3", p);
+        Position<String> r = t.add("4", p);
+        Position<String> s = t.add("5", q);
+        Position<String> w = t.add("6", q);
+        Position<String> x = t.add("7", h);
+
+        Iterator<Position<String>> it = new FrontIterator(t, t.root());  //Sacar los nodos hoja
+        String salida = "";
+        while (it.hasNext()) {
+            salida += it.next().getElement();
+            System.out.println("frontit " + salida);
+        }
+        assertEquals(salida, "5674");
+        assertEquals(t.isLeaf(r), true);
+
+    }
+
+    @Test
+    public void testPreOrderIterator(){
+        LinkedTree<String> t = new LinkedTree<>();
+        Position<String> p = t.addRoot("1");
+        Position<String> q = t.add("2", p);
+        Position<String> h = t.add("3", p);
+        Position<String> r = t.add("4", p);
+        Position<String> s = t.add("5", q);
+        Position<String> w = t.add("6", q);
+        Position<String> x = t.add("7", h);
+
+        Iterator<Position<String>> it = new PreorderIterator(t, t.root());
+        String salida = "";
+        while (it.hasNext()) {
+            salida += it.next().getElement();
+            System.out.println(salida);
+        }
+        assertEquals(salida, "1256374");
+    }
+
+    @Test
+    public void testPostOrderIterator(){
+        LinkedTree<String> t = new LinkedTree<>();
+        Position<String> p = t.addRoot("1");
+        Position<String> q = t.add("2", p);
+        Position<String> h = t.add("3", p);
+        Position<String> r = t.add("4", p);
+        Position<String> s = t.add("5", q);
+        Position<String> w = t.add("6", q);
+        Position<String> x = t.add("7", h);
+
+        Iterator<Position<String>> it = new PostorderIterator(t, t.root());
+        String salida = "";
+        while (it.hasNext()) {
+            salida += it.next().getElement();
+            System.out.println(salida);
+        }
+        assertEquals(salida, "5627341");
+    }
+
+
 }

@@ -36,6 +36,7 @@ public class BFSIterator<E> implements Iterator<Position<E>> {
     
     @Override
     public boolean hasNext() {
+
         return (nodeQueue.size() != 0);
     }
 
