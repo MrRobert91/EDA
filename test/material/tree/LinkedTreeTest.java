@@ -41,8 +41,6 @@ public class LinkedTreeTest {
         LinkedTree<String> t = new LinkedTree<>();
         assertTrue(t.isEmpty());
         assertEquals(t.size(), 0);
-        assertEquals(t.root(), null);
-
 
     }
 

@@ -294,12 +294,17 @@ public class LinkedTree<E> implements Tree<E> {
         return this.iteratorFactory.createIterator(this);
     }
 
-    //Metodo moveSubtree
-    public Position<E> moveSubtree(Position<E> pOrig, Position<E> pDest)
+    //Metodo moveSubtree- V-1.0 (con checkPosition)
+    /*public Position<E> moveSubtree(Position<E> pOrig, Position<E> pDest)
             throws InvalidPositionException {
         TreeNode<E> origen = checkPosition(pOrig);
         TreeNode<E> destino = checkPosition(pDest);
-        TreeNode<E> parent = origen.parent;
+
+        TreeNode<E> origen = (TreeNode<E>) pOrig;
+        TreeNode<E> destino = (TreeNode<E>) pDest;
+
+        //TreeNode<E> parent = origen.parent;
+        TreeNode<E> parent = origen.getParent();
 
         Iterator<Position<E>> it = this.iteratorFactory.createIterator(this, origen);//Si el destino es interno al origen
         while(it.hasNext()){
@@ -316,6 +321,67 @@ public class LinkedTree<E> implements Tree<E> {
         hijosOrigen.remove(origen);
 
         return origen ;
+    }*/
+
+    public Position<E> moveSubtree(Position<E> pOrig, Position<E> pDest) throws IllegalStateException {
+        TreeNode<E> origen = (TreeNode<E>) pOrig;
+        TreeNode<E> destino = (TreeNode<E>) pDest;
+        TreeNode<E> parentOrigen = origen.getParent();
+
+        if (origen == this.root) {
+            throw new IllegalStateException("el origen no puede ser la raiz");
+        } else {
+            moveSubtreeAux(origen, destino);
+
+            origen.setParent(destino); //Establezco a destino como padre del nodo origen.
+
+            List<LinkedTree<E>.TreeNode<E>> hijosDestino = destino.getChildren();
+            hijosDestino.add(origen);//añadimos el nodo origen a la lista de hijos del nodo destino
+            List<LinkedTree<E>.TreeNode<E>> hijosOrigen = parentOrigen.getChildren();
+            hijosOrigen.remove(origen);
+            //Eliminamos a origen de la lista de hijos de su padre y le añadimos como hijo de destino
+            //parentOrigen.getChildren().remove(origen);
+        }
+        return pDest;
     }
+
+    private void moveSubtreeAux(TreeNode<E> orig, TreeNode<E> dest){
+        //cambiamos los mytree para que sean iguales al los del destino, para el metodo changeFamily()
+        orig.setMyTree(dest.getMyTree());
+        for(TreeNode<E> hijo : orig.children ){
+            if((orig == dest)|| (hijo == dest)){
+                throw new IllegalStateException("destino no puede ser hijo de origen");
+            }
+            moveSubtreeAux(hijo,dest);  //recursivamente vamos cambiando el mytree de cada hijo
+        }
+    }
+
+
+    public void moveSubtree2 (TreeNode<E> orig, TreeNode<E> dest){
+
+        orig.setMyTree(dest.getMyTree());
+
+        for(TreeNode<E> child : orig.children){
+            if((orig == dest)|| (child == dest)) {
+                throw new IllegalStateException("el nodo destino es hijo del nodo origen");
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
