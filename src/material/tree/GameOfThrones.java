@@ -379,7 +379,7 @@ public class GameOfThrones {
             switch (opcion) {
                 case "1":
                     System.out.println("Consultar integrantes de una familia");
-                    System.out.println("introduzca un apellido para obtener el arbol de los integrantes de la familia");
+                    System.out.println("Introduzca un apellido para obtener el arbol de los integrantes de la familia");
                     System.out.println("Las opciones son: Stark, Tully, Lannister, Baratheon, Targaryen o Greyjoy");
                     try{
                         String surname = teclado.nextLine();
