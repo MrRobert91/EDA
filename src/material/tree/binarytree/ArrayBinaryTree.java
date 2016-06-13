@@ -84,11 +84,13 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
 
     @Override
     public int size() {
+
         return this.size;
     }
 
     @Override
     public boolean isEmpty() {
+
         return this.size == 0;
     }
 
@@ -112,15 +114,25 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     @Override
     public boolean hasLeft(Position<E> p) throws IllegalStateException {
         BTPos<E> pos = checkPosition(p);
-        return (tree[pos.getIndex()*2] != null);//EL arbol está en anchura por lo que los hijos izquierdos tendrán un indice de justo el doble
+        Boolean sol = false;
 
+        if(  pos.getIndex() *2 < tree.length ){
+            sol = tree[pos.getIndex()*2] != null;
+        }
+        //return (tree[pos.getIndex()*2] != null);//EL arbol está en anchura por lo que los hijos izquierdos tendrán un indice de justo el doble
+        return sol;
 
     }
 
     @Override
     public boolean hasRight(Position<E> p) throws IllegalStateException {
         BTPos<E> pos = checkPosition(p);
-        return (tree[(pos.getIndex()*2 )+1 ] != null);
+        Boolean sol = false;
+        if(  pos.getIndex() *2 +1 < tree.length ) {
+            sol = tree[(pos.getIndex()*2 )+1 ] != null;
+        }
+
+        return sol;
     }
 
     @Override
@@ -148,7 +160,7 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     public Position<E> right(Position<E> p) throws IllegalStateException, IndexOutOfBoundsException {
         BTPos<E> pos = checkPosition(p);
         if (hasRight(pos)){
-            return tree[pos.index * 2];
+            return tree[pos.index * 2 +1];
         }
         throw new IllegalStateException("No tiene hijo derecho");
     }
@@ -218,20 +230,29 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
 
     }
 
-    @Override
+    /*@Override
     public Position<E> addRoot(E e) throws IllegalStateException {
         if(isEmpty()){
-            BTPos<E> root =(BTPos<E>) this.root();
-            BTPos<E> previousRoot =root;
 
-            root.element = e;
-            this.size = 1;
-            return previousRoot;
+            this.size = 1;  //Establezco el tamaño a 1
+            tree[1] = new BTPos<>(this, e, 1);  //Creo el nuevo nodo
+            return tree[1];
         }
         else{
             throw new IllegalStateException("Ya hay una raiz, no s epuede añadir otra");
         }
+    }*/
+    @Override
+    public Position<E> addRoot(E e) throws IllegalStateException {
+        if (!isEmpty()) {
+            throw new IllegalStateException("Tree already has a root");
+        }
+        BTPos<E> node = new BTPos<E>(this, e, 1);
+        this.tree[1] = node;
+        size++;
+        return node;
     }
+
 
     @Override
     public Position<E> insertLeft(Position<E> p, E e) throws IllegalStateException {
@@ -253,8 +274,8 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
             }
             BTPos<E> newLeftChild = new BTPos<>(this, e, indexLeftChild);
             tree[indexLeftChild] = newLeftChild;
-            tree[ indexLeftChild * 2]= null;
-            tree[ indexLeftChild * 2 +1]= null;
+            /*tree[ indexLeftChild * 2]= null;
+            tree[ indexLeftChild * 2 +1]= null;*/
             size++;
             return newLeftChild;
         }
@@ -281,8 +302,8 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
             }
             BTPos<E> newRightChild = new BTPos<>(this, e, indexRightChild);
             tree[indexRightChild] = newRightChild;
-            tree[ indexRightChild * 2]= null;
-            tree[ indexRightChild * 2 +1]= null;
+            /*tree[ indexRightChild * 2]= null;
+            tree[ indexRightChild * 2 +1]= null;*/
             size++;
             return newRightChild;
         }
@@ -367,11 +388,11 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
         return pos;
     }
 
-    @Override
+    //@Override
     public String toString() {
         //toString Que?? no viene en el LinkedBinary, convierte en String el arbol?
-
-        throw new UnsupportedOperationException("Not yet implemented!!");
+        return "";
+        //throw new UnsupportedOperationException("Not yet implemented!!");
     }
 
 }
