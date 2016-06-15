@@ -17,7 +17,7 @@ public class Student {
         this.age = age;
         this.record = record;
         this.mark = mark;
-        //Comparator<Student> comp;
+
     }
 
     public double getMark() {

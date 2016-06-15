@@ -17,7 +17,7 @@ public class CompareStudent {
         abb.insert(new Student("Nathan Drake", 42, 1, 9.5 ));
         abb.insert(new Student("Victor Sullivan", 57, 2, 10 ));
         abb.insert(new Student("Pedro Paramo", 50, 3, 8 ));
-        abb.insert(new Student("Tyler Durden", 36, 4, 7.5 ));
+        abb.insert(new Student("Tyler Durden", 40, 4, 7.5 ));
         abb.insert(new Student("Tony Soprano", 58, 5, 5.3 ));
         abb.insert(new Student("Jack Sparrow", 35, 6, 6.5 ));
         abb.insert(new Student("Vincent Vega", 32, 7, 5.1 ));
@@ -32,7 +32,7 @@ public class CompareStudent {
         abb2.insert(new Student("Aathan Drake", 42, 1, 9.5 ));
         abb2.insert(new Student("Victor Sullivan", 57, 2, 10 ));
         abb2.insert(new Student("Pedro Paramo", 50, 3, 8 ));
-        abb2.insert(new Student("Tyler Durden", 36, 4, 7.5 ));
+        abb2.insert(new Student("Tyler Durden", 40, 4, 7.5 ));
         abb2.insert(new Student("Zony Soprano", 58, 5, 5.3 ));
         abb2.insert(new Student("Jack Sparrow", 35, 6, 6.5 ));
         abb2.insert(new Student("Vincent Vega", 32, 7, 5.1 ));
@@ -46,7 +46,7 @@ public class CompareStudent {
         abb3.insert(new Student("Nathan Drake", 42, 1, 9.5 ));
         abb3.insert(new Student("Victor Sullivan", 57, 2, 10 ));
         abb3.insert(new Student("Pedro Paramo", 50, 3, 8 ));
-        abb3.insert(new Student("Tyler Durden", 36, 4, 7.5 ));
+        abb3.insert(new Student("Tyler Durden", 40, 4, 7.5 ));
         abb3.insert(new Student("Tony Soprano", 58, 5, 5.3 ));
         abb3.insert(new Student("Jack Sparrow", 35, 6, 6.5 ));
         abb3.insert(new Student("Vincent Vega", 32, 7, 5.1 ));
@@ -62,7 +62,7 @@ public class CompareStudent {
         avl.insert(new StudentCompAge("Nathan Drake", 42, 1, 9.5 ));
         avl.insert(new StudentCompAge("Victor Sullivan", 57, 2, 10 ));
         avl.insert(new StudentCompAge("Pedro Paramo", 50, 3, 8 ));
-        avl.insert(new StudentCompAge("Iñigo Montoya ", 36, 4, 7.5 ));
+        avl.insert(new StudentCompAge("Iñigo Montoya ", 40, 4, 7.5 ));
         avl.insert(new StudentCompAge("Tony Soprano", 58, 5, 5.3 ));
         avl.insert(new StudentCompAge("Jack Sparrow", 35, 6, 6.5 ));
         avl.insert(new StudentCompAge("Vincent Vega", 32, 7, 5.1 ));
@@ -77,7 +77,7 @@ public class CompareStudent {
         avl2.insert(new StudentCompMark("Nathan Drake", 42, 1, 9.5 ));
         avl2.insert(new StudentCompMark("Victor Sullivan", 57, 2, 10 ));
         avl2.insert(new StudentCompMark("Pedro Paramo", 50, 3, 8 ));
-        avl2.insert(new StudentCompMark("Iñigo Montoya ", 36, 4, 7.5 ));
+        avl2.insert(new StudentCompMark("Iñigo Montoya ", 40, 4, 7.5 ));
         avl2.insert(new StudentCompMark("Tony Soprano", 58, 5, 5.3 ));
         avl2.insert(new StudentCompMark("Jack Sparrow", 35, 6, 6.5 ));
         avl2.insert(new StudentCompMark("Vincent Vega", 32, 7, 5.1 ));
@@ -92,8 +92,8 @@ public class CompareStudent {
         avl3.insert(new StudentCompName("Nathan Drake", 42, 1, 9.5 ));
         avl3.insert(new StudentCompName("Victor Sullivan", 57, 2, 10 ));
 
-        avl3.insert(new StudentCompName("Iigo Montoya ", 36, 4, 7.5 ));
-        avl3.insert(new StudentCompName("Tony Soprano", 58, 5, 5.3 ));
+        avl3.insert(new StudentCompName("Iigo Montoya ", 40, 4, 7.5 ));
+        avl3.insert(new StudentCompName("Tony Soprano", 36, 5, 5.3 ));
         avl3.insert(new StudentCompName("Jack Sparrow", 35, 6, 6.5 ));
         avl3.insert(new StudentCompName("Vincent Vega", 32, 7, 5.1 ));
         avl3.insert(new StudentCompName("Jules Winnfield", 43, 8, 6.8 ));
@@ -102,6 +102,51 @@ public class CompareStudent {
         System.out.println("AVL -El ultimo nombre (alfabeticamente) : "+avl3.last().getElement().getName());
         System.out.println("");
 
+
+        //Con ARN ahora
+        AVLTree<StudentCompAge> arn = new AVLTree<>();
+        arn.insert(new StudentCompAge("Nathan Drake", 42, 1, 9.5 ));
+        arn.insert(new StudentCompAge("Victor Sullivan", 57, 2, 10 ));
+        arn.insert(new StudentCompAge("Pedro Paramo", 50, 3, 8 ));
+        arn.insert(new StudentCompAge("Iñigo Montoya ", 40, 4, 7.5 ));
+        arn.insert(new StudentCompAge("Tony Soprano", 58, 5, 5.3 ));
+        arn.insert(new StudentCompAge("Jack Sparrow", 35, 6, 6.5 ));
+        arn.insert(new StudentCompAge("Vincent Vega", 32, 7, 5.1 ));
+        arn.insert(new StudentCompAge("Jules Winnfield", 43, 8, 6.8 ));
+
+        System.out.println("ARN - El mas joven esa: "+arn.first().getElement().getName());
+        System.out.println("ARN - El mas viejo es: "+arn.last().getElement().getName());
+        System.out.println("");
+
+
+        AVLTree<StudentCompMark> arn2 = new AVLTree<>();
+        arn2.insert(new StudentCompMark("Nathan Drake", 42, 1, 9.5 ));
+        arn2.insert(new StudentCompMark("Victor Sullivan", 57, 2, 10 ));
+        arn2.insert(new StudentCompMark("Pedro Paramo", 50, 3, 8 ));
+        arn2.insert(new StudentCompMark("Iñigo Montoya ", 40, 4, 7.5 ));
+        arn2.insert(new StudentCompMark("Tony Soprano", 58, 5, 5.3 ));
+        arn2.insert(new StudentCompMark("Jack Sparrow", 35, 6, 6.5 ));
+        arn2.insert(new StudentCompMark("Vincent Vega", 32, 7, 5.1 ));
+        arn2.insert(new StudentCompMark("Jules Winnfield", 43, 8, 6.8 ));
+
+        System.out.println("ARN - El que tiene menos nota: "+arn2.first().getElement().getName());
+        System.out.println("ARN - El tiene mas nota: "+arn2.last().getElement().getName());
+        System.out.println("");
+
+
+        AVLTree<StudentCompName> arn3 = new AVLTree<>();
+        arn3.insert(new StudentCompName("Nathan Drake", 42, 1, 9.5 ));
+        arn3.insert(new StudentCompName("Victor Sullivan", 57, 2, 10 ));
+
+        arn3.insert(new StudentCompName("Iigo Montoya ", 40, 4, 7.5 ));
+        arn3.insert(new StudentCompName("Tony Soprano", 36, 5, 5.3 ));
+        arn3.insert(new StudentCompName("Jack Sparrow", 35, 6, 6.5 ));
+        arn3.insert(new StudentCompName("Vincent Vega", 32, 7, 5.1 ));
+        arn3.insert(new StudentCompName("Jules Winnfield", 43, 8, 6.8 ));
+
+        System.out.println("ARN -El primer nombre (alfabeticamente) : "+arn3.first().getElement().getName());
+        System.out.println("ARN -El ultimo nombre (alfabeticamente) : "+arn3.last().getElement().getName());
+        System.out.println("");
 
 
 
